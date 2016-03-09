@@ -32,11 +32,13 @@ public class MyEslEventTest {
     client.setEventSubscriptions("plain", "all");
     
     log.info("--- check registration status ---");
-    EslMessage response = client.sendSyncApiCommand("sofia xmlstatus", "profile internal reg 1002");
-    log.info( "Response to 'sofia_contact': [{}]", response );
+    //EslMessage response = client.sendSyncApiCommand("sofia xmlstatus", "profile internal reg 1001");
+    //log.info( "Response to 'sofia_contact': [{}]", response );
 
     log.info("--- call 1001 1002 ---");
-    client.sendSyncApiCommand("originate", "user/1001 1002");
+    //client.sendSyncApiCommand( "echo", "Echo Test");
+    //client.sendSyncApiCommand("originate", "user/1002 &echo()");
+    client.sendSyncApiCommand("originate", "user/1001 &bridge(user/1002)");
     new Scanner(System.in).nextLine();
      
     client.close();
